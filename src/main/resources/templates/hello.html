@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Список книг</title>
+    <link rel="stylesheet" href=" https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <hr>
+    <form action="/">
+        <div>
+            <label for="title">Название
+                <input id="title" type="text" name="title">
+            </label>
+            <label for="brand">Брэнд
+                <input id="brand" type="text" name="brand">
+            </label>
+            <label for="publicationYear">Год
+                <input id="publicationYear" type="text" name="publicationYear">
+            </label>
+        </div>
+        <div>
+            <label for="size">Кол-во элементов на странице
+                <input id="size" type="text" name="size" th:value="${size}">
+            </label>
+            <label for="page">Номер страницы
+                <input id="page" type="text" name="page" th:value="${page}">
+            </label>
+        </div>
+
+        <button type="submit">Фильтровать</button>
+    </form>
+    <h1>Список книг</h1>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Код</th>
+            <th>Название</th>
+            <th>Год</th>
+            <th>Бренд</th>
+            <th>На складе</th>
+            <th>Цена</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="book : ${books}">
+            <td th:text="${book.id}"></td>
+            <td th:text="${book.vendorCode}"></td>
+            <td th:text="${book.title}"></td>
+            <td th:text="${book.publicationYear}"></td>
+            <td th:text="${book.brand}"></td>
+            <td th:text="${book.stock}"></td>
+            <td th:text="${book.price}"></td>
+        </tr>
+        </tbody>
+    </table>
+<!--    <div>-->
+<!--        <ul class="pagination">-->
+<!--            <li class="page-item" th:class="${books.hasPrevious() ? '' : 'disabled'}">-->
+<!--                <a class="page-link" th:href="@{/books(page=${books.number - 1}, title=${param.title}, brand=${param.brand}, year=${param.year})}">Предыдущая</a>-->
+<!--            </li>-->
+<!--            <li class="page-item" th:class="${books.hasNext() ? '' : 'disabled'}">-->
+<!--                <a class="page-link" th:href="@{/books(page=${books.number + 1}, title=${param.title}, brand=${param.brand}, year=${param.year})}">Следующая</a>-->
+<!--            </li>-->
+<!--        </ul>-->
+<!--    </div>-->
+</div>
+</body>
+</html>
